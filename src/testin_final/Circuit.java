@@ -6,6 +6,7 @@ public class Circuit {
 	ArrayList<Node> com=new ArrayList<Node> ();
 	ArrayList<String> pin=new ArrayList<String> ();
 	ArrayList<String> pout=new ArrayList<String> ();
+	ArrayList<String> wires=new ArrayList<String> ();
 	public void menu(){
 		System.out.println("Please Selection one of the following options");
 		System.out.println("[0] Read the input net-list");
@@ -30,8 +31,26 @@ public class Circuit {
 					if (line.toLowerCase().contains("input")){
 						Scanner name=new Scanner(line);
 						String in=name.next();
-						System.out.print("input name ");
-						System.out.println(in);
+						pin.add(in);
+					}
+					else if (line.toLowerCase().contains("output")){
+						Scanner name=new Scanner(line);
+						String in=name.next();
+						pout.add(in);
+					}
+					else{
+						Scanner name=new Scanner(line);
+						String out=name.next();
+						if (wires.contains(out)==false)
+							wires.add(out);
+						String func=name.next();
+						String in1=name.next();
+						if (wires.contains(in1)==false)
+							wires.add(in1);
+						String in2=name.next();
+						if (wires.contains(in2)==false)
+							wires.add(in2);
+						gate x=new gate(func);
 					}
 				
 				
