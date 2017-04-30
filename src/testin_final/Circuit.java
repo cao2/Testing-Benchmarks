@@ -23,6 +23,7 @@ public class Circuit {
 		Scanner sc=new Scanner(System.in);
 		String filename=sc.nextLine();
 		String line;
+		int linenum=0;
 		try(BufferedReader br=new BufferedReader(new FileReader(filename))){
 			line=br.readLine();
 			while(line!=null ){
@@ -51,6 +52,9 @@ public class Circuit {
 						if (wires.contains(in2)==false)
 							wires.add(in2);
 						gate x=new gate(func);
+						String nm=new String("node_"+linenum);
+						Node nd=new Node(nm,in1,in2,out,x);
+						com.add(nd);
 					}
 				
 				
@@ -58,9 +62,12 @@ public class Circuit {
 				
 				}
 				line=br.readLine();
+				linenum++;
 			}
 			
 		}
+		for (Node x: com)
+			System.out.println(x.toString());
 	}
 	public void fault_collapse(){
 		
