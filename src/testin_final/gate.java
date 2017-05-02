@@ -37,13 +37,13 @@ public class gate {
 		else if (name.contains("or"))
 			control=1;
 		else if (name.equals("not"))
-			control=2;
+			control=1;
 		else
 			control=3;
 		
 		if (name.contains("nand"))
 			inversion=1;
-		if (name.contains("and"))
+		else if (name.contains("and"))
 			inversion=0;
 		else if (name.contains("n"))
 			inversion=1;

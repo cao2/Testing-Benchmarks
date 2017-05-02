@@ -17,23 +17,29 @@ public class Node {
 	public int calc(int in1, int in2){
 		
 		 if (in1<2 &&in2<2){
-			if (name.equals("and"))
+			 //System.out.println("both norma;");
+			if (func.getName().equals("and"))
 				return in1&in2;
-			else if (name.equals("or"))
+			else if (func.getName().equals("or"))
 				return in1|in2;
-			else if (name.equals("nor"))
-				return ~(in1|in2);
-			else if (name.equals("nand"))
-				return ~(in1&in2);
-			else if (name.equals("xor"))
+			else if (func.getName().equals("nor"))
+				return 1-(in1|in2);
+			else if (func.getName().equals("nand"))
+				return 1-(in1&in2);
+			else if (func.getName().equals("xor"))
 				return in1^in2;
-			else if (name.equals("xnor"))
-				return ~(in1^in2);
-			else if (name.equals("not"))
-				return ~(in1);
+			else if (func.getName().equals("xnor"))
+				return 1-(in1^in2);
+			else if (func.getName().equals("not"))
+				return 1-(in1);
 		}
-		else if (in1==func.getControl()||in2==func.getControl())
-			return func.getInversion()^func.getControl();
+		else if (in1==func.getControl()||in2==func.getControl()){
+			//System.out.println("has control value "+func.getInversion());
+			if (func.getInversion()==1)
+				return 1-func.getControl();
+			else
+				return func.getControl();
+			}
 		//now non of the input has control values
 		//if both have faulty values
 		else if (in1==3 && in2==3)
@@ -45,19 +51,19 @@ public class Node {
 				else
 					return 9-in1;
 			else{
-				if (name.equals("and"))
+				if (func.getName().equals("and"))
 					return 0;
-				else if (name.equals("or"))
+				else if (func.getName().equals("or"))
 					return 1;
-				else if (name.equals("nor"))
+				else if (func.getName().equals("nor"))
 					return 0;
-				else if (name.equals("nand"))
+				else if (func.getName().equals("nand"))
 					return 1;
-				else if (name.equals("xor"))
+				else if (func.getName().equals("xor"))
 					return 0;
-				else if (name.equals("xnor"))
+				else if (func.getName().equals("xnor"))
 					return 1;
-				else if (name.equals("not"))
+				else if (func.getName().equals("not"))
 					return 9-in1;
 			}
 		}
@@ -75,7 +81,6 @@ public class Node {
 					return in2;
 		}
 			
-		
 		return 3;
 	}
 	
